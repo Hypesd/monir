@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتب الملازم أول منير عثمان محمد - معرض وتخليص السيارات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d4af37;
+            --light-bg: #f8f9fa;
+            --text-color: #222222;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--light-bg); color: var(--text-color); line-height: 1.7; }
+        
+        header { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 3rem 1rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* الأيقونة المكبرة */
+        header img.logo { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--accent-color); margin-bottom: 15px; object-fit: cover; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        
+        header h1 { font-size: 2rem; color: var(--accent-color); margin-bottom: 5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+        header p { font-size: 1.05rem; opacity: 0.95; max-width: 700px; margin: 0 auto; color: #ffffff; }
+        
+        .container { max-width: 950px; margin: 25px auto; padding: 0 15px; }
+        section { background: white; padding: 30px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+        
+        h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 8px; margin-bottom: 20px; font-size: 1.5rem; }
+        p, ul { margin-bottom: 15px; font-size: 1.05rem; color: #333333; }
+        ul { padding-right: 20px; }
+        
+        .docs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .doc-card { border: 1px solid #cbd5e1; border-radius: 10px; padding: 15px; text-align: center; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.04); }
+        .doc-card img { width: 100%; height: 240px; object-fit: cover; border-radius: 8px; border: 1px solid #cbd5e1; }
+        .doc-card p { margin-top: 10px; font-weight: 700; color: var(--primary-color); font-size: 1rem; }
+        
+        .btn-nav, .btn-action { display: block; width: 100%; background: linear-gradient(135deg, var(--accent-color), #c19b2e); color: #1b4332; text-align: center; padding: 16px; border-radius: 8px; font-size: 1.2rem; font-weight: bold; text-decoration: none; margin-top: 25px; transition: 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.15); border: none; cursor: pointer; }
+        .btn-nav:hover, .btn-action:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--primary-color); font-size: 1rem; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #94a3b8; border-radius: 8px; font-size: 1rem; background: #ffffff; color: #000000; }
+        input:focus, select:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 5px rgba(45, 106, 79, 0.3); }
+        
+        .btn-action { background: var(--primary-color); color: #ffffff; }
+        .btn-action:hover { background: var(--secondary-color); }
+        
+        .btn-whatsapp { display: none; width: 100%; background-color: #15803d; color: #ffffff; text-align: center; padding: 14px; border-radius: 8px; font-size: 1.15rem; font-weight: bold; text-decoration: none; margin-top: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-whatsapp:hover { background-color: #166534; }
+        
+        #loadingMsg { display: none; text-align: center; margin: 20px 0; color: #166534; font-weight: bold; font-size: 1.1rem; }
+        #successMsg { display: none; margin-top: 20px; padding: 15px; background: #f0fdf4; border: 2px solid #16a34a; border-radius: 8px; text-align: center; color: #166534; font-weight: bold; font-size: 1.05rem; }
+        
+        #carSection { display: none; }
+        
+        footer { text-align: center; padding: 20px; background: var(--primary-color); color: white; font-size: 0.95rem; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- مطابقة اسم أيقونة الموقع m3.jpg -->
+        <img src="m3.jpg" alt="أيقونة الموقع" class="logo">
+        <h1>مكتب الملازم أول / منير عثمان محمد</h1>
+        <p>المعرض والمنصة الرسمية المعتمدة لبيع وتخليص السيارات القادمة من ليبيا عبر محلية الدبة إلى كافة مدن السودان</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- قسم الصفحة الأولى: التعريف والضمانات والخصوصية -->
+        <div id="homeSection">
+            <section>
+                <h2>ماهية الموقع وكيف يعمل</h2>
+                <p>يُعد هذا الموقع المنصة الرسمية المعتمدة لإدارة وتوفير السيارات القادمة من ليبيا (البوكو) والتي تمت جدولتها وتخليصها قانونياً وجمركياً عبر منفذ ومحلية <strong>الدبة</strong>.</p>
+                <p><strong>آلية العمل:</strong></p>
+                <ul>
+                    <li>نوفر قاعدة بيانات محدثة لأحدث أنواع السيارات الموجودة في السوق والمعتمدة لدى المكتب.</li>
+                    <li>يتم استعراض الطلب عبر الانتقال إلى معرض السيارات المتطور والتحقق من نوع المركبة ومواصفاتها.</li>
+                    <li>إدخال بيانات العميل الشخصية ومكان التسليم مع إمكانية رفع المستند بكل أمان.</li>
+                    <li>التواصل المباشر والموثق عبر تطبيق الواتساب لإتمام عمليات البيع والتفاوض.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>الضمانات الرسمية</h2>
+                <p>نعمل بمعايير صارمة وموثوقية تامة لضمان حقوق كافة عملائنا الكرام. نرفق أدناه المستندات الرسمية والبطاقة العسكرية للملازم أول / منير عثمان محمد:</p>
+                <div class="docs-grid">
+                    <div class="doc-card">
+                        <!-- مطابقة اسم البطاقة العسكرية m1.jpg -->
+                        <img src="m1.jpg" alt="البطاقة العسكرية">
+                        <p>صورة البطاقة العسكرية</p>
+                    </div>
+                    <div class="doc-card">
+                        <!-- مطابقة اسم الجواز الرسمي m2.jpg -->
+                        <img src="m2.jpg" alt="الجواز الرسمي">
+                        <p>صورة الجواز الرسمي</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>سياسة الخصوصية</h2>
+                <p>نلتزم التزاماً تاما بحماية سرية وأمان البيانات والمستندات الخاصة بك:</p>
+                <ul>
+                    <li>تُستخدم بياناتك ومستنداتك الشخصية حصرياً لإتمام عمليات الشراء والتوثيق والتعاقد في محلية الدبة.</li>
+                    <li>لا يتم الإفصاح عن أي معلومات خاصة بالعملاء لأي جهات أخرى تحت أي ظرف.</li>
+                    <li>نضمن بيئة آمنة ومشفرة تماماً للتعاملات التجارية والمالية.</li>
+                </ul>
+
+                <button type="button" class="btn-nav" onclick="showCarSection()">🚗 الانتقال إلى معرض السيارات والطلب الفوري</button>
+            </section>
+        </div>
+
+        <!-- قسم الصفحة الثانية: معرض السيارات والطلب -->
+        <div id="carSection">
+            <section>
+                <button type="button" class="btn-action" style="background:#475569; width:auto; padding:8px 15px; margin-bottom:15px; font-size:0.9rem;" onclick="showHomeSection()">← العودة إلى الرئيسية</button>
+                <h2>معرض السيارات والطلب الفوري</h2>
+                
+                <form id="carForm" onsubmit="processOrder(event)">
+                    
+                    <div class="form-group">
+                        <label for="fullName">الاسم الثلاثي:</label>
+                        <input type="text" id="fullName" required placeholder="أدخل اسمك الثلاثي الكريم">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deliveryLocation">مكان التسليم المطلوب:</label>
+                        <input type="text" id="deliveryLocation" required placeholder="مثال: الدبة - الخرطوم - بورتسودان...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userDoc">رفع مستند المستخدم (هوية أو جواز أو بطاقة):</label>
+                        <input type="file" id="userDoc" accept="image/*,.pdf" required>
+                    </div>
+
+                    <!-- اختيار شركة السيارة -->
+                    <div class="form-group">
+                        <label for="carCompany">اختر شركة السيارة:</label>
+                        <select id="carCompany" required>
+                            <option value="">-- اضغط لاختيار الشركة المصنعة --</option>
+                            <option value="تويوتا (Toyota)">تويوتا (Toyota)</option>
+                            <option value="تويوتا تندرا (Toyota Tundra)">تويوتا تندرا (Toyota Tundra)</option>
+                            <option value="هيونداي (Hyundai)">هيونداي (Hyundai)</option>
+                            <option value="كيا (Kia)">كيا (Kia)</option>
+                            <option value="نيسان (Nissan)">نيسان (Nissan)</option>
+                            <option value="ميتسوبيشي (Mitsubishi)">ميتسوبيشي (Mitsubishi)</option>
+                            <option value="فورد (Ford)">فورد (Ford)</option>
+                        </select>
+                    </div>
+
+                    <!-- اسم السيارة بالتحديد -->
+                    <div class="form-group">
+                        <label for="carName">اسم السيارة بالتحديد (الطراز):</label>
+                        <input type="text" id="carName" required placeholder="مثال: لاندكروزر صقور، هيلوكس دبل، توسان...">
+                    </div>
+
+                    <!-- موديل السنة -->
+                    <div class="form-group">
+                        <label for="carModel">موديل السنة:</label>
+                        <select id="carModel" required>
+                            <option value="">-- حدد سنة الموديل --</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019 وما قبلها">2019 وما قبلها</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carColor">لون السيارة:</label>
+                        <input type="text" id="carColor" required placeholder="مثال: أبيض ناصع / أسود ملكي / رصاصي...">
+                    </div>
+
+                    <button type="submit" class="btn-action" id="submitBtn">🔍 التحقق من توفر السيارة وإتمام الطلب</button>
+                    
+                    <div id="loadingMsg">⏳ جاري مطابقة مواصفات السيارة والتحقق من التوفر في مخزون الدبة... يرجى الانتظار</div>
+
+                    <div id="successMsg">
+                        ✅ تم التحقق بنجاح! السيارة متوفرة ومجهزة بالتخليص الجمركي الفوري.
+                    </div>
+
+                    <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp">💬 اضغط هنا لإرسال الطلب والتفاوض عبر الواتساب</a>
+
+                </form>
+            </section>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة لمكتب الملازم أول / منير عثمان محمد - محلية الدبة © 2026</p>
+    </footer>
+
+    <script>
+        function showCarSection() {
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('carSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showHomeSection() {
+            document.getElementById('carSection').style.display = 'none';
+            document.getElementById('homeSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function processOrder(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const deliveryLocation = document.getElementById('deliveryLocation').value.trim();
+            const carCompany = document.getElementById('carCompany').value;
+            const carName = document.getElementById('carName').value.trim();
+            const carModel = document.getElementById('carModel').value;
+            const carColor = document.getElementById('carColor').value.trim();
+
+            if (!carCompany) {
+                alert("يرجى اختيار شركة سيارة صحيحة ومعتمدة من القائمة.");
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingMsg = document.getElementById('loadingMsg');
+            const successMsg = document.getElementById('successMsg');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+
+            submitBtn.style.display = 'none';
+            loadingMsg.style.display = 'block';
+            successMsg.style.display = 'none';
+            whatsappBtn.style.display = 'none';
+
+            // محاكاة نظام التحقق لمدة 4 ثوانٍ دقيقة
+            setTimeout(function() {
+                loadingMsg.style.display = 'none';
+                successMsg.style.display = 'block';
+
+                const targetWhatsAppNumber = "249100850483";
+                const message = `السلام عليكم، أرغب في تأكيد شراء سيارة وتخليصها:%0A` +
+                                `----------------------------------%0A` +
+                                `👤 الاسم: ${fullName}%0A` +
+                                `📍 مكان التسليم: ${deliveryLocation}%0A` +
+                                `🏭 الشركة: ${carCompany}%0A` +
+                                `🚗 اسم السيارة: ${carName}%0A` +
+                                `📅 الموديل: ${carModel}%0A` +
+                                `🎨 اللون: ${carColor}%0A` +
+                                `----------------------------------%0A` +
+                                `أرجو التنسيق والتفاوض حول السعر.`;
+
+                whatsappBtn.href = `https://wa.me/${targetWhatsAppNumber}?text=${message}`;
+                whatsappBtn.style.display = 'block';
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
